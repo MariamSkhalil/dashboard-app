@@ -1,45 +1,44 @@
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { loginSuccess, loginFailure } from "@/redux/slices/authSlice";
-import { useRouter } from "next/router";
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "@/lib/firebase"
+import { loginSuccess, loginFailure } from "@/redux/slices/authSlice"
+import { useRouter } from "next/router"
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const error = useSelector((state) => state.auth.error);
+  const dispatch = useDispatch()
+  const error = useSelector((state) => state.auth.error)
 
-  //console.log('Dispatch:', dispatch);
-  //console.log('Error:', error);
+  //console.log('Dispatch:', dispatch)
+  //console.log('Error:', error)
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isRegister, setIsRegister] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [isRegister, setIsRegister] = useState(false)
 
   const router= useRouter()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      let userCredential;
+      let userCredential
       if (isRegister) {
-        userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        userCredential = await createUserWithEmailAndPassword(auth, email, password)
         setIsRegister(false)
-        setEmail("");
-        setPassword("");
+        setEmail("")
+        setPassword("")
       } else {
-        userCredential = await signInWithEmailAndPassword(auth, email, password);
+        userCredential = await signInWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user
+        dispatch(loginSuccess({ email: user.email, uid: user.uid }))
+        router.push("/dashboard")
       }
-
-      const user = userCredential.user;
-      dispatch(loginSuccess({ email: user.email, uid: user.uid }));
-      router.push("/dashboard")
     } catch (err) {
-      dispatch(loginFailure(err.message));
+      dispatch(loginFailure(err.message))
     }
-  };
+  }
 
   return (
     <div className="min-h-screen p-6 mt-4 flex items-center justify-center flex-1">
@@ -77,5 +76,5 @@ export default function Login() {
       </button>
     </div>
     </div>
-  );
+  )
 }
