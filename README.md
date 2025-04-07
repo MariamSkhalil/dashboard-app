@@ -23,15 +23,15 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
 ## Implementation Process
->First started with setting up the react next.js project and downloading redux, tailwindcss, firebase, recharts and simple-datatables
->Then created a store with an authSlice used for authurization to log in, sign up and log out using firebase as well
->wrapped the app with the provider
->implemented my login page that had the handlelogin function that used auth from firebase and authSlice, and implemented the html form
->after a successful login the user is redirected to the dashboard so used a router for the re-direction
->the dashboard consists of: Header, DataTable, Chart
->Starting with the header it has the name of the app and a log out button
->The dataTable implemented with hardcoded data and its html template from simple-datatables library with modifications to its UI for a more user/mobile friendly experience
->The charts (Line Chart and Bar Chart) are implemented using the recharts library and samples from the data used in the data table
+>.First started with setting up the react next.js project and downloading redux, tailwindcss, firebase, recharts and simple-datatables
+>.Then created a store with an authSlice used for authurization to log in, sign up and log out using firebase as well
+>.wrapped the app with the provider
+>.implemented my login page that had the handlelogin function that used auth from firebase and authSlice, and implemented the html form
+>.after a successful login the user is redirected to the dashboard so used a router for the re-direction
+>.the dashboard consists of: Header, DataTable, Chart
+>.Starting with the header it has the name of the app and a log out button
+>.The dataTable implemented with hardcoded data and its html template from simple-datatables library with modifications to its UI for a more user/mobile friendly experience
+>.The charts (Line Chart and Bar Chart) are implemented using the recharts library and samples from the data used in the data table
 
 ## Learn More
 
